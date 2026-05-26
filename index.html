@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather App</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="animated-bg">
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+    <div class="particle"></div>
+  </div>
+
+  <div class="container">
+    <div class="header">
+      <h1>Weather<span class="highlight">.</span></h1>
+      <p class="subtitle">Get instant weather updates</p>
+    </div>
+
+    <div class="search-section">
+      <div class="search-wrapper">
+        <input type="text" id="city" placeholder="Search any city..." class="search-input">
+        <button onclick="getWeather()" class="search-btn">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <circle cx="8" cy="8" r="6" stroke="currentColor" stroke-width="2"/>
+            <path d="M12 12l4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div id="result" class="weather-result">
+      <div class="empty-state">
+        <p>🌍 Search for a city to see the weather</p>
+      </div>
+    </div>
+
+    <!-- TABS SECTION -->
+    <div id="tabsSection" class="tabs-section" style="display: none;">
+      <div class="tabs-header">
+        <button class="tab-btn active" onclick="switchTab('today')">TODAY</button>
+        <button class="tab-btn" onclick="switchTab('hourly')">HOURLY</button>
+        <button class="tab-btn" onclick="switchTab('forecast')">10-DAY</button>
+        <button class="tab-btn" onclick="switchTab('details')">DETAILS</button>
+      </div>
+
+      <!-- TODAY TAB -->
+      <div id="todayTab" class="tab-content active">
+        <div class="current-weather-full">
+          <div class="current-main">
+            <div class="weather-icon-large" id="weatherIconLarge">🌤️</div>
+            <div class="temp-info">
+              <div class="temp-now" id="tempNow">--°C</div>
+              <div class="condition" id="conditionToday">--</div>
+            </div>
+          </div>
+          <div class="today-details-grid">
+            <div class="detail-box">
+              <span class="label">Feels Like</span>
+              <span class="value" id="feelsLikeBox">--°C</span>
+            </div>
+            <div class="detail-box">
+              <span class="label">Humidity</span>
+              <span class="value" id="humidityBox">--%</span>
+            </div>
+            <div class="detail-box">
+              <span class="label">Wind</span>
+              <span class="value" id="windBox">-- km/h</span>
+            </div>
+            <div class="detail-box">
+              <span class="label">Pressure</span>
+              <span class="value" id="pressureBox">-- mb</span>
+            </div>
+            <div class="detail-box">
+              <span class="label">Visibility</span>
+              <span class="value" id="visibilityBox">-- km</span>
+            </div>
+            <div class="detail-box">
+              <span class="label">UV Index</span>
+              <span class="value" id="uvBox">--</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- HOURLY TAB -->
+      <div id="hourlyTab" class="tab-content">
+        <div class="hourly-forecast" id="hourlyForecast">
+          <!-- Hourly cards will be inserted here -->
+        </div>
+      </div>
+
+      <!-- 10-DAY TAB -->
+      <div id="forecastTab" class="tab-content">
+        <div class="daily-forecast" id="dailyForecast">
+          <!-- Daily forecast cards will be inserted here -->
+        </div>
+      </div>
+
+      <!-- DETAILS TAB -->
+      <div id="detailsTab" class="tab-content">
+        <div class="details-grid">
+          <div class="detail-section">
+            <h3>☀️ Sun & Moon</h3>
+            <div id="sunMoonInfo">Loading...</div>
+          </div>
+          <div class="detail-section">
+            <h3>🌬️ Air Quality</h3>
+            <div id="airQualityInfo">Loading...</div>
+          </div>
+          <div class="detail-section">
+            <h3>🌡️ Temperature Chart</h3>
+            <div class="chart-container">
+              <canvas id="forecastChart"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
